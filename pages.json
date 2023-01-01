@@ -10,7 +10,7 @@
 		}, {
 			"path": "pages/feeds/feeds",
 			"style": {
-				"navigationBarTitleText": "前端动态",
+				"navigationBarTitleText": "动态中心",
 				"enablePullDownRefresh": true
 			}
 
@@ -30,6 +30,24 @@
 
 		}
 	],
+	"subPackages": [{
+		"root": "subpages",
+		"pages": [{
+			"path": "newinfo/newinfo",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "feedinfo/feedinfo",
+			"style": {
+				"navigationBarTitleText": "动态详情",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationBarTextStyle": "black",
+				"backgroundColor": "#FFFFFF"
+			}
+		}]
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

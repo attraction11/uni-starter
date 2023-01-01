@@ -6,6 +6,11 @@ import uView from 'uview-ui';
 
 Vue.use(uView);
 Vue.config.productionTip = false
+Vue.prototype.BaseFileURL = 'http://ts.lagou.uieee.com/api/v2/files/'
+
+// 引入公用的组件 uni-nav-bar
+import uniNavBar from "@/components/uni-nav-bar/index.vue"
+Vue.component("uni-nav-bar", uniNavBar);
 
 import store from '@/store/index.js'
 Vue.prototype.$store = store
