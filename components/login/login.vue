@@ -6,7 +6,7 @@
 			<view class="close-box" @tap="closeLogin" bind:tap="cancel">
 				<image class="close-img" src="/static/close.png" />
 			</view>
-			
+
 			<!-- #ifdef MP-WEIXIN -->
 			<view class="p-name" v-if="getUserInfoTag">
 				前端交流学习中心欢迎你
@@ -16,18 +16,20 @@
 				<text>一键获取微信信息</text>
 			</button>
 			<!-- #endif  -->
-			
+
 
 			<u-form :model="form" ref="uForm" v-show="!getUserInfoTag">
 				<u-form-item label="账号" prop="login" label-width="150" required v-if="loginType === 'pwlogin'">
 					<u-input v-model="form.login" placeholder='输入手机号/邮箱/昵称' />
 				</u-form-item>
 
-				<u-form-item label="昵称" prop="name" label-width="150" required v-if="loginType === 'phone' || loginType === 'email'">
+				<u-form-item label="昵称" prop="name" label-width="150" required
+					v-if="loginType === 'phone' || loginType === 'email'">
 					<u-input v-model="form.name" placeholder='2-10个字符' />
 				</u-form-item>
 
-				<u-form-item label="电话" prop="phone" label-width="150" required v-if="loginType === 'phone' || loginType === 'codelogin'">
+				<u-form-item label="电话" prop="phone" label-width="150" required
+					v-if="loginType === 'phone' || loginType === 'codelogin'">
 					<u-input v-model="form.phone" placeholder='输入11位手机号码' />
 				</u-form-item>
 				<u-form-item label="邮箱" prop="email" label-width="150" required v-if="loginType === 'email'">
@@ -39,10 +41,11 @@
 					<u-button slot="right" type="success" size="mini" @click="getCode">获取验证码</u-button>
 				</u-form-item>
 
-				<u-form-item label="密码" label-width="150" required prop="password"  v-if="loginType !== 'codelogin'">
+				<u-form-item label="密码" label-width="150" required prop="password" v-if="loginType !== 'codelogin'">
 					<u-input v-model="form.password" type="password" placeholder='限4-20个字符,区分大小写' />
 				</u-form-item>
-				<u-form-item label="重复密码" required label-width="150" prop="repassword" v-if="loginType === 'phone' || loginType === 'email'">
+				<u-form-item label="重复密码" required label-width="150" prop="repassword"
+					v-if="loginType === 'phone' || loginType === 'email'">
 					<u-input v-model="form.repassword" type="password" placeholder='再次输入密码' />
 				</u-form-item>
 				<view class="btns">
@@ -50,7 +53,8 @@
 					<u-button class="ubtn" @click="cancel">取消</u-button>
 				</view>
 				<view class="type">
-					<u-subsection active-color="#007cba" font-size="20" height="52" :list="subsectionList" :current="0" @change="sectionChange"></u-subsection>
+					<u-subsection active-color="#007cba" font-size="20" height="52" :list="subsectionList" :current="0"
+						@change="sectionChange"></u-subsection>
 				</view>
 			</u-form>
 
@@ -93,7 +97,7 @@
 				],
 				// 是否获取用户信息
 				// #ifndef MP-WEIXIN
-				getUserInfoTag : false,
+				getUserInfoTag: false,
 				// #endif
 				// #ifdef MP-WEIXIN
 				getUserInfoTag: true,
@@ -129,13 +133,15 @@
 							asyncValidator: async (rule, value, callback) => {
 								// 只有在 电话、邮箱注册的时候才会触发该校验规则
 								if (this.loginType === 'phone' || this.loginType === 'email') {
-									let res = await this.$u.api.findUser({ name: value })
+									let res = await this.$u.api.findUser({
+										name: value
+									})
 									if (!!value && res.statusCode === 200) {
 										callback(new Error('当前用户昵称已存在'))
 									} else {
 										callback()
 									}
-								}else{
+								} else {
 									callback()
 								}
 							},
@@ -157,15 +163,17 @@
 					phone: [{
 							asyncValidator: async (rule, value, callback) => {
 								// 只有在手机验证码注册的时候，才需要判断当前手机号码是否已经被注册
-								if (this.loginType === 'phone'){
-									let res = await this.$u.api.findUser({ name: value })
+								if (this.loginType === 'phone') {
+									let res = await this.$u.api.findUser({
+										name: value
+									})
 									if (!!value && res.statusCode === 200) {
 										callback(new Error('当前电话已注册'))
 									} else {
 										// 如果校验通过，也要执行callback()回调
 										callback()
 									}
-								}else{
+								} else {
 									callback()
 								}
 							},
@@ -188,7 +196,7 @@
 					// 只有在邮箱 注册的时候才需要使用
 					email: [{
 							asyncValidator: async (rule, value, callback) => {
-								if (this.loginType === 'email'){
+								if (this.loginType === 'email') {
 									let res = await this.$u.api.findUser({
 										name: value
 									})
@@ -197,7 +205,7 @@
 									} else {
 										callback()
 									}
-								}else{
+								} else {
 									callback()
 								}
 							},
@@ -237,7 +245,7 @@
 							// 除了 手机验证码登陆 其他均需要验证
 							if (this.loginType !== 'codelogin') {
 								// 名字长度为 2-10 位
-								return (value.length>=4 && value.length<=20)
+								return (value.length >= 4 && value.length <= 20)
 							} else {
 								return true
 							}
@@ -298,7 +306,6 @@
 				}
 			})
 			// #endif
-			
 		},
 		methods: {
 			...mapActions(['userLoginAction', 'userLogoutAction']),

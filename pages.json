@@ -17,7 +17,7 @@
 		}, {
 			"path": "pages/me/me",
 			"style": {
-				"navigationBarTitleText": "个人中心",
+				"navigationStyle": "custom",
 				"enablePullDownRefresh": true
 			}
 
@@ -46,6 +46,20 @@
 				"navigationBarTextStyle": "black",
 				"backgroundColor": "#FFFFFF"
 			}
+		}, {
+			"path": "setting/setting",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "share/share",
+			"style": {
+				"navigationBarTitleText": "动态分享",
+				"enablePullDownRefresh": false
+			}
+
 		}]
 	}],
 	"globalStyle": {

@@ -11,6 +11,12 @@ Vue.prototype.BaseFileURL = 'http://ts.lagou.uieee.com/api/v2/files/'
 // 引入公用的组件 uni-nav-bar
 import uniNavBar from "@/components/uni-nav-bar/index.vue"
 Vue.component("uni-nav-bar", uniNavBar);
+// 引入公用组件 登陆模块
+import login from "@/components/login/login.vue";
+Vue.component("login", login);
+// 引入公用组件 分享组件
+import gotoShare from "@/components/gotoShare/gotoShare.vue";
+Vue.component("goto-share", gotoShare);
 
 import store from '@/store/index.js'
 Vue.prototype.$store = store
